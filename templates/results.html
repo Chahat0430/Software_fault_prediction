@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fault Prediction</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Results</h1>
+        <div class="alert alert-success">
+            <p><strong>Accuracy:</strong> {{ accuracy }}</p>
+            <p><strong>Precision:</strong> {{ precision }}</p>
+            <p><strong>Recall:</strong> {{ recall }}</p>
+            <p><strong>F1 Score:</strong> {{ f1 }}</p>
+            <p><strong>AUC:</strong> {{ auc }}</p>
+        </div>
+        
+        <!-- Visualization using Plotly -->
+        <div id="visualization" style="width: 100%; height: 500px;"></div>
+        
+        <script>
+            // Data for Plotly
+            var data = [
+                {
+                    x: ['Accuracy', 'Precision', 'Recall', 'F1 Score', 'AUC'],
+                    y: [{{ accuracy }}, {{ precision }}, {{ recall }}, {{ f1 }}, {{ auc }}],
+                    type: 'bar',
+                    marker: {
+                        color: 'rgb(49,130,189)' // Customize color if needed
+                    }
+                }
+            ];
+
+            // Layout configuration
+            var layout = {
+                title: 'Performance Metrics',
+                xaxis: {
+                    title: 'Metric',
+                    tickangle: -45
+                },
+                yaxis: {
+                    title: 'Value'
+                },
+                margin: {
+                    t: 40,
+                    b: 100,
+                    l: 60,
+                    r: 20
+                }
+            };
+
+            // Plot the chart
+            Plotly.newPlot('visualization', data, layout);
+        </script>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 p-4 text-center">
+        <p>&copy; 2024 Fault Prediction. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+    
